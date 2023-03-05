@@ -5,8 +5,8 @@ import ProductDetailRepository, {
 } from '../infras/ProductDetailRepository';
 import {
   getProductDetail,
-  getProductDetailSuccess,
   getProductDetailFailed,
+  getProductDetailSuccess,
 } from './actions';
 
 function* getProductDetailSagaHandler(action: PayloadAction<{ id: string }>) {

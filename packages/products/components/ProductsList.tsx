@@ -4,7 +4,8 @@ import * as React from 'react';
 import Loading from '../../../core/components/Loading';
 import NoData from '../../../core/components/NoData';
 import { useAppDispatch, useAppSelector } from '../../../redux/hooks';
-import { getProducts, productsSelector } from './../core';
+import useProductList from '../core/getListUseCase';
+import { productsSelector } from './../core';
 import { ProductItem } from './ProductItem';
 
 export interface IProductsList {}
@@ -12,11 +13,17 @@ export interface IProductsList {}
 export function ProductsList(props: IProductsList) {
   const dispatch = useAppDispatch();
   const productsData = useAppSelector(productsSelector);
+  const { fetchList, getList } = useProductList();
+  const a = () => {
+    fetchList(() => '');
+  };
 
   React.useEffect(() => {
-    dispatch(getProducts());
+    // dispatch(getProducts());
+    a();
   }, []);
 
+  console.log(getList());
   return (
     <>
       {productsData.status === 'loading' ? (
